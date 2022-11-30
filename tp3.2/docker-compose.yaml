@@ -1,0 +1,68 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+
+  traefik:
+    image: traefik:2.6
+    container_name: demo_traefik
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - net1
+      - net2      
+    ports:
+      - 80:80
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik-data/traefik.yml:/traefik.yml:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=tp32_net1"
+      - "traefik.http.routers.traefik-secure.rule=Host(`traefik.demo.docker`)"
+      - "traefik.http.routers.traefik-secure.service=api@internal"
+
+  app1:
+    container_name: demo_app1
+    image: node:19
+#    ports:
+#      - 3000:3000
+    volumes:
+      - "./app1:/usr/src/app"
+      - shared-volume:/usr/src/app/shared
+    working_dir: /usr/src/app
+    command: npm start 
+    networks:
+      - net1
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=tp32_net1"
+      - "traefik.http.routers.app1-secure.rule=Host(`app1.demo.docker`)"
+      - "traefik.http.routers.app1-secure.service=app1"
+      - "traefik.http.services.app1.loadbalancer.server.port=3000"
+
+  app2:
+    container_name: demo_app2
+    image: node:19 
+#    ports:
+#      - 3000:3000
+    volumes:
+      - "./app2:/usr/src/app"
+      - shared-volume:/usr/src/app/shared
+    working_dir: /usr/src/app
+    command: npm start 
+    networks:
+      - net2
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=tp32_net1"
+      - "traefik.http.routers.app2-secure.rule=Host(`app2.demo.docker`)"
+      - "traefik.http.routers.app2-secure.service=app2"
+      - "traefik.http.services.app2.loadbalancer.server.port=3000"
+
+volumes:
+  shared-volume:
+
+networks:
+  net1:
+  net2:
