@@ -1,0 +1,11 @@
+{
+    "clientId": "ea8d1b8a-2ce0-432f-b15f-dbfcf1b422e1",
+    "id": "/subscriptions/892f5f5a-af92-4453-88b4-424a03cded2f/resourcegroups/niji-sb-stephane-loison/providers/Microsoft.ManagedIdentity/userAssignedIdentities/slo-container-app-identity",
+    "location": "westeurope",
+    "name": "slo-container-app-identity",
+    "principalId": "2ed59ded-a182-47a8-b1dd-e94c284230bf",
+    "resourceGroup": "niji-sb-stephane-loison",
+    "tags": {},
+    "tenantId": "e5ffa3bb-fde9-46e7-a6b9-cf7f633df1ef",
+    "type": "Microsoft.ManagedIdentity/userAssignedIdentities"
+  }

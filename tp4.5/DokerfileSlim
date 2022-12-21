@@ -1,0 +1,6 @@
+FROM alpine
+
+RUN apk update && apk add wget \
+    && apk add apache2 && apk add php
+
+CMD echo "ras"
