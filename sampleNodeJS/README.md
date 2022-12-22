@@ -1,16 +1,17 @@
 # Dev
 
 docker run --rm -v $(pwd):/usr/src/app -w /usr/src/app node:18 npm install
-
 docker run --rm -d -v $(pwd):/usr/src/app -w /usr/src/app -p 3000:3000 node:18 npm start
 curl http://127.0.0.1:3000
 
 # Create Image
 
 docker build --tag testslo.azurecr.io/samplenodejs .
+docker run --rm -p 3000:3000 testslo.azurecr.io/samplenodejs
 
 # Login & push
 
+az login
 az acr login --name testslo
 docker push testslo.azurecr.io/samplenodejs
 
@@ -67,7 +68,8 @@ az containerapp create \
   --min-replicas 0 \
   --max-replicas 1 \
   --target-port 3000 \
-  --ingress 'external'
+  --ingress 'external' \
+  --query properties.configuration.ingress.fqdn
 
 az containerapp delete \
   --name slo-container-app \

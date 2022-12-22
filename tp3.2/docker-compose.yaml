@@ -55,7 +55,7 @@ services:
       - net2
     labels:
       - "traefik.enable=true"
-      - "traefik.docker.network=tp32_net1"
+      - "traefik.docker.network=tp32_net2"
       - "traefik.http.routers.app2-secure.rule=Host(`app2.demo.docker`)"
       - "traefik.http.routers.app2-secure.service=app2"
       - "traefik.http.services.app2.loadbalancer.server.port=3000"
