@@ -1,2 +1,6 @@
-docker run –d nginx
-docker exec CONTAINER_ID more /etc/os-release
+docker ps
+docker stop xxxxx
+
+docker ps
+docker ps -a
+

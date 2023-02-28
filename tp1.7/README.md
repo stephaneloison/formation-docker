@@ -1,1 +1,4 @@
-docker exec -it CONTAINER_ID bash
+docker ps -a
+docker start xxxxxx
+docker ps
+

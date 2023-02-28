@@ -1,1 +1,5 @@
-docker run --rm nginx
+docker run nginx
+docker ps
+docker rm xxxxxxx
+
+
