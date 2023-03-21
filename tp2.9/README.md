@@ -1,7 +1,10 @@
-docker ps : visualisation des conteneurs actifs
-docker ps –a : visualisation des conteneurs actifs et non actifs
-docker stop : arrêt d’un conteneur actif
-docker rm : suppression d’un conteneur inactif
-docker image list : visualisation des images du registre local
-docker rmi : suppression d’une image
-docker network rm : suppression d’un réseau
+docker run -d --rm -p 127.0.0.1:90:80 nginx
+curl http://127.0.0.1:90
+docker ps
+docker stop XXX
+
+
+
+docker run --rm -v $(pwd):/usr/src/app -w /usr/src/app node:18 npm install
+docker run --rm -d -v $(pwd):/usr/src/app -w /usr/src/app -p 3000:3000 node:18 npm start
+curl http://127.0.0.1:3000
