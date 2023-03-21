@@ -10,6 +10,6 @@ app.get('/', function (req, res) {
 
 
 //Launch listening server on port 3000
-app.listen(3000, function () {
+app.listen(3000, '127.0.0.1', function () {
   console.log('app listening on port http://localhost:3000!')
 })
