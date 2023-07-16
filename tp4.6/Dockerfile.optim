@@ -1,0 +1,15 @@
+FROM maven:3.9.3-eclipse-temurin-17
+
+ENV HOME=/usr/app
+RUN mkdir -p $HOME
+WORKDIR $HOME
+
+ADD demo/pom.xml .
+RUN mvn dependency:copy-dependencies
+
+ADD demo/src ./src
+
+RUN mvn clean package -DskipTests -Dcheckstyle.skip=true -Dpmd.skip=true
+RUN mv target/*.jar /app.jar
+
+ENTRYPOINT ["sh","-c","java -jar /app.jar"]

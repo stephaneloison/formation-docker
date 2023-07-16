@@ -1,9 +1,16 @@
-# Création du projet angularSample sans environnement node/ng en local
+time docker build . -f Dockerfile.basic
+-> construction complete
 
-docker run -u $(id -u) --rm -v $(pwd):/app trion/ng-cli ng new angularSample
+time docker build . -f Dockerfile.basic
+-> construction via cache
 
-# Création de l'image de run via le docker multistage
+time docker build . -f Dockerfile.optim
+-> construction complete de la verison optimisée
+-> Modification du fichier HELP.md
 
-docker build ./angularSample -f ./Dockerfile -t tp46
+time docker build . -f Dockerfile.optim
+-> Verification que tous les caches sont utilisés
+-> Modification d'un fichier java
 
-docker run --rm -p 80:80 tp46
+time docker build . -f Dockerfile.optim
+-> Verification que la couche de dépendances est bien utilisée

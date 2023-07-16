@@ -2,9 +2,9 @@
 FROM node as build
 
 WORKDIR /app
-COPY package*.json /app/
+COPY angularSample/package*.json /app/
 RUN npm install
-COPY . /app
+COPY angularSample /app
 ARG configuration=production
 RUN npm run build -- --configuration $configuration
 
